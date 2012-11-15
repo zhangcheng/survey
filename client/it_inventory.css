@@ -1,0 +1,39 @@
+/* CSS declarations go here */
+
+body {
+	padding-top: 60px;
+}
+
+.login-area {
+	padding-right: 150px;
+}
+
+.icon-remove {
+	margin-left: 5px;
+}
+
+.textRight {
+	text-align: right;
+}
+
+.headerRule {
+	margin: 0;
+}
+
+.header {
+	font-weight: bold;
+}
+
+.additional-info {
+}
+
+.editModal {	
+}
+
+.tall-text-area {
+	height: 100px;
+}
+
+.otherHardware {
+	margin-left: 10px;
+}

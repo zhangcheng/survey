@@ -1,0 +1,33 @@
+<template name="screenSizes">
+	<div class="span2 well well-large">
+		<p class="lead">Screen Sizes listed here will be in drop-down menus.</p>
+		<p><small>
+			Type the size in the text box below, and then press <strong>enter</strong> to add it.
+		</small></p>
+		<p><small>
+			Double-click any size in the list to edit it, and then press <strong>enter</strong> when you're done to save the changes.
+		</small></p>
+		<p><small>
+			In both text boxes, you can use press <strong>escape</strong> to cancel.
+		</small></p>
+	</div>
+	<div class="span10">
+		<div>
+			{{#each screenSizes}}
+				{{#if editing}}
+					<div class="edit">
+						<input id="updateScreenSize" type="text" value="{{size}}"/>
+					</div>
+				{{else}}
+					<div>
+						<span class="screenSize">{{size}}</span> <i id="" class="icon-remove removeScreenSize"></i>
+					</div>
+				{{/if}}
+			{{/each}}
+		</div>
+		<hr/>
+		<div class="well">
+			<input id="newScreenSize" type="text" placeholder="New screen size" />
+		</div>
+	</div>
+</template>

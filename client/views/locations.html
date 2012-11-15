@@ -1,0 +1,35 @@
+<template name="locations">
+	<div class="span2 well well-large">
+		<p class="lead">Locations listed here will be in drop-down menus.</p>
+		<p><small>
+			Type the location name in the text box below, and then press <strong>enter</strong> to add it.
+		</small></p>
+		<p><small>
+			Double-click any location in the list to edit it, and then press <strong>enter</strong> when you're done to save the changes.
+		</small></p>
+		<p><small>
+			In both text boxes, you can use press <strong>escape</strong> to cancel.
+		</small></p>
+	</div>
+	<div class="span10">
+		<div>
+			{{#each locations}}
+				{{#if editing}}
+					<div class="edit">
+						<input class="location-name-input" id="location-name-input" type="text" value="{{name}}"/>
+					</div>
+				{{else}}
+					<div>
+						<span class="location-name">{{name}}</span> <i class="icon-remove remove-location"></i>
+					</div>
+				{{/if}}
+			{{/each}}
+		</div>
+		<hr/>
+		<div class="well">
+			<div id="create-location">
+				<input type="text" id="new-location" placeholder="New location" />
+			</div>
+		</div>
+	</div>
+</template>

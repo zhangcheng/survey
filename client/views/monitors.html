@@ -1,0 +1,125 @@
+<template name="monitors">
+	<div class="span2 well well-large">
+		<p class="lead">Monitors are added to Stations.</p>
+	</div>
+	<div class="span10">
+		<table class="table table-hover">
+			<thead>
+				<tr>
+					<th>Serial Number</th>
+					<th>Manufacturer</th>
+					<th>Model</th>
+					<th>Size</th>
+					<th>PO Number</th>
+					<th>Cost</th>
+					<th></th>
+				</tr>
+			</thead>
+			<tbody>
+				{{#each monitors}}
+					<tr>
+						<td>
+							{{#if editingSerialNumber}}
+								<input id="updateSerialNumber" class="edit" type="text" value="{{serialNumber}}"/>
+							{{else}}
+								<span class="serialNumber">{{serialNumber}}</span>
+							{{/if}}
+						</td>
+						<td>
+							{{#if editingManufacturerName}}
+								<select id="updateManufacturerId" class="edit">
+									{{#each manufacturers}}
+										<option value="{{_id}}">{{name}}</option>
+									{{/each}}
+								</select>
+							{{else}}
+								<span class="manufacturerName">{{manufacturerName}}</span>
+							{{/if}}
+						</td>
+						<td>
+							{{#if editingModel}}
+								<input id="updateModel" class="edit" type="text" value="{{model}}"/>
+							{{else}}
+								<span class="model">{{model}}</span>
+							{{/if}}
+						</td>
+						<td>
+							{{#if editingSize}}
+								<select id="updateScreenSize" class="edit">
+									{{#each screenSizes}}
+										<option value="{{size}}">{{size}}"</option>
+									{{/each}}
+								</select>
+							{{else}}
+								<span class="size">{{size}}</span>
+							{{/if}}
+						</td>
+						<td>
+							{{#if editingPONumber}}
+								<input id="updatePONumber" class="edit" type="text" value="{{poNumber}}"/>
+							{{else}}
+								<span class="poNumber">{{poNumber}}</span>
+							{{/if}}
+						</td>
+						<td>
+							{{#if editingCost}}
+								<input id="updateCost" class="edit" type="text" value="{{cost}}"/>
+							{{else}}
+								<span class="cost">{{cost}}</span>
+							{{/if}}
+						</td>
+						<td><i class="icon-remove remove-monitor"></i></td>
+					</tr>
+				{{/each}}
+			</tbody>
+		</table>
+		<hr/>
+		<div id="create-monitor">
+			<form class="well form-horizontal">
+				<legend>New Monitor</legend>
+				<fieldset>
+					<div class="control-group">
+						<label class="control-label" for="new-serial">Serial number</label>
+						<div class="controls">
+							<input id="new-serial" type="text" placeholder="Serial number"/>
+						</div>
+					</div>
+					<div class="control-group">
+						<label class="control-label" for="new-manufacturer-select">Manufacturer / model</label>
+						<div class="controls">
+							<select id="new-manufacturer-select">
+								{{#each manufacturers}}
+									<option value="{{_id}}">{{name}}</option>
+								{{/each}}
+							</select>
+							<input id="new-model" type="text" placeholder="Model"/>
+						</div>
+					</div>
+					<div class="control-group">
+						<label class="control-label" for="new-size-select">Screen size</label>
+						<div class="controls">
+							<select id="new-size-select">
+								{{#each screenSizes}}
+									<option value="{{size}}">{{size}}"</option>
+								{{/each}}
+							</select>
+						</div>
+					</div>
+					<div class="control-group">
+						<label class="control-label" for="new-poNumber">PO# / cost</label>
+						<div class="controls">
+							<input id="new-poNumber" type="text" placeholder="Purchase Order number"/>
+							<input id="new-cost" type="text" placeholder="Cost"/>
+						</div>
+					</div>
+					<div class="control-group">
+						<div class="controls">
+							<button id="new-submit" type="submit" class="btn btn-primary">Save changes</button>
+							<button id="new-cancel" type="button" class="btn">Cancel</button>
+						</div>
+					</div>
+				</fieldset>
+			</form>
+		</div>
+	</div>
+</template>

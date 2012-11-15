@@ -1,0 +1,35 @@
+<template name="opticalDrives">
+	<div class="span2 well well-large">
+		<p class="lead">Optical Drives listed here will be in drop-down menus.</p>
+		<p><small>
+			Type the drive name in the text box below, and then press <strong>enter</strong> to add it.
+		</small></p>
+		<p><small>
+			Double-click any drive in the list to edit it, and then press <strong>enter</strong> when you're done to save the changes.
+		</small></p>
+		<p><small>
+			In both text boxes, you can use press <strong>escape</strong> to cancel.
+		</small></p>
+	</div>
+	<div class="span10">
+		<div>
+			{{#each opticalDrives}}
+				{{#if editing}}
+					<div class="edit">
+						<input class="optical-drive-name-input" id="optical-drive-name-input" type="text" value="{{name}}"/>
+					</div>
+				{{else}}
+					<div>
+						<span class="optical-drive-name">{{name}}</span> <i class="icon-remove remove-optical-drive"></i>
+					</div>
+				{{/if}}
+			{{/each}}
+		</div>
+		<hr/>
+		<div class="well">
+			<div id="create-optical-drive">
+				<input type="text" id="new-optical-drive" placeholder="New optical drive" />
+			</div>
+		</div>
+	</div>
+</template>

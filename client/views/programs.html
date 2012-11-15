@@ -1,0 +1,60 @@
+<template name="programs">
+	<div class="span2 well well-large">
+		<p class="lead">Programs listed here will be in drop-down menus.</p>
+	</div>
+	<div class="span10">
+		<div class="row-fluid">
+			<span class="span4 header">Programs</span>
+			<span class="span1 header">Position</span>
+			<span class="span1 header"></span>
+		</div>
+		<hr class="headerRule"/>
+		{{#each programs}}
+			<div class="row-fluid">
+				{{#if editing}}
+					<div class="edit">
+						<form class="well">
+							<select id="updateManufacturerSelect">
+								{{#each manufacturers}}
+									<option value="{{_id}}">{{name}}</option>
+								{{/each}}
+							</select>
+							<input id="updateName" type="text" value="{{name}}"/>
+							<input id="updateVersion" type="text" value="{{version}}"/>
+							<input id="updatePosition" type="text" value="{{position}}"/>
+							<div >
+								<button id="updateSubmit" type="submit" class="btn btn-primary">Save changes</button>
+								<button id="updateCancel" type="button" class="btn">Cancel</button>
+							</div>
+							<input id="updateId" type="hidden" value="{{_id}}"/>
+						</form>
+					</div>
+				{{else}}
+					<span class="span4">{{manufacturerName}} {{name}} {{version}}</span>
+					<span class="span1">{{position}}</span>
+					<span class="span1">
+						<i class="icon-edit editProgram"></i>
+						<i class="icon-trash removeProgram"></i>
+					<span>
+				{{/if}}
+			</div>
+		{{/each}}
+		<hr/>
+		<div id="createProgram">
+			<form class="well">
+				<select id="newManufacturerSelect">
+					{{#each manufacturers}}
+						<option value="{{_id}}">{{name}}</option>
+					{{/each}}
+				</select>
+				<input id="newName" type="text" placeholder="New program"/>
+				<input id="newVersion" type="text" placeholder="Version"/>
+				<input id="newPosition" type="text" placeholder="Position"/>
+				<div >
+					<button id="newSubmit" type="submit" class="btn btn-primary">Save changes</button>
+					<button id="newCancel" type="button" class="btn">Cancel</button>
+				</div>
+			</form>
+		</div>
+	</div>
+</template>

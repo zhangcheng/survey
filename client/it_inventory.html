@@ -1,0 +1,71 @@
+<head>
+	<title>IT Inventory</title>
+	<meta charset="utf-8">
+	<meta name="viewport" content="width=device-width, initial-scale=1.0">
+	<meta name="author" content="Jon Zgoda">
+</head>
+
+<body>
+	{{> survey}}
+</body>
+
+<template name="menu">
+	<div class="navbar navbar-fixed-top">
+		<div class="navbar-inner">
+			<div class="container-fluid">
+				<span class="brand">IT Inventory</span>
+				<ul class="nav" roll="navigation">
+					<li><a href="/">Home</a></li>
+					<li><a href="/stations">Stations</a></li>
+					<li class="dropdown">
+						<a id="eLabel" role="button" class="dropdown-toggle" data-toggle="dropdown">
+							Equipment
+							<b class="caret"></b>
+						</a>
+						<ul class="dropdown-menu" roll="menu" aria-labelledby="eLabel">
+							<li><a tabindex="-1" href="/computers">Computers</a></li>
+							<li><a tabindex="-1" href="/monitors">Monitors</a></li>
+							<li><a tabindex="-1" href="/printers">Printers</a></li>
+						</ul>
+					</li>
+					<li class="dropdown">
+						<a id="cLabel" role="button" class="dropdown-toggle" data-toggle="dropdown">
+							Configure
+							<b class="caret"></b>
+						</a>
+						<ul class="dropdown-menu" roll="menu" aria-labelledby="cLabel">
+							<li class="nav-header">Drop-Down Menus</li>
+							<li><a tabindex="-1" href="/locations">Locations</a></li>
+							<li><a tabindex="-1" href="/manufacturers">Manufacturers</a></li>
+							<li><a tabindex="-1" href="/processors">Processors</a></li>
+							<li><a tabindex="-1" href="/opticalDrives">Optical Drives</a></li>
+							<li><a tabindex="-1" href="/screenSizes">Screen Sizes</a></li>
+							<li><a tabindex="-1" href="/wiredEthernet">Wired Ethernet</a></li>
+							<li><a tabindex="-1" href="/wirelessEthernet">Wireless Ethernet</a></li>
+							<li><a tabindex="-1" href="/programs">Programs</a></li>
+							<li class="divider"></li>
+							<li><a tabindex="-1" href="/users">Users</a></li>
+							<li><a tabindex="-1" href="/options">Options</a></li>
+						</ul>
+					</li>
+				</ul>
+				<span class="navbar-text pull-right login-area">
+					{{loginButtons}}
+				</span>
+			</div>
+		</div>
+	</div>
+</template>
+
+<template name="main">
+	<div class="container-fluid">
+		<div class="row-fluid">
+			{{{render currentPage}}}
+		</div>
+		<hr/>
+		<footer>
+			<span class="pull-left">{{companyName}}</span>
+			<span class="pull-right">Riding on a <a href="http://meteor.com" target="_blank">Meteor</a>!</span>
+		</footer>
+	</div>
+</template>

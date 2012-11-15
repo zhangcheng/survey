@@ -1,0 +1,35 @@
+<template name="manufacturers">
+	<div class="span2 well well-large">
+		<p class="lead">Manufacturers listed here will be in drop-down menus.</p>
+		<p><small>
+			Type the manufacturer name in the text box below, and then press <strong>enter</strong> to add it.
+		</small></p>
+		<p><small>
+			Double-click any manufacturer in the list to edit it, and then press <strong>enter</strong> when you're done to save the changes.
+		</small></p>
+		<p><small>
+			In both text boxes, you can use press <strong>escape</strong> to cancel.
+		</small></p>
+	</div>
+	<div class="span10">
+		<div>
+			{{#each manufacturers}}
+				{{#if editing}}
+					<div class="edit">
+						<input class="manufacturer-name-input" id="manufacturer-name-input" type="text" value="{{name}}"/>
+					</div>
+				{{else}}
+					<div>
+						<span class="manufacturer-name">{{name}}</span> <i class="icon-remove remove-manufacturer"></i>
+					</div>
+				{{/if}}
+			{{/each}}
+		</div>
+		<hr/>
+		<div class="well">
+			<div id="createManufacturer">
+				<input type="text" id="new-manufacturer" placeholder="New manufacturer" />
+			</div>
+		</div>
+	</div>
+</template>

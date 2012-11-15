@@ -1,0 +1,43 @@
+<template name="survey">
+    <div class="span10">
+        <div class="row-fluid">
+            <span class="span3 header">Serial Number</span>
+            <span class="span3 header">Static IP</span>
+        </div>
+        <hr class="headerRule"/>
+        {{#each surveys}}
+            <div class="row-fluid">
+                    <span class="serialNumber span3">{{serialNumber}}</span>
+
+                    <span class="manufacturerName span3">{{ipAddress}}</span>
+
+            </div>
+        {{/each}}
+        <hr/>
+        <div>
+            <form class="well form-horizontal">
+                <legend>New Computer</legend>
+                <fieldset>
+                    <div class="control-group">
+                        <label class="control-label" for="newSerial">Serial number</label>
+                        <div class="controls">
+                            <input id="newSerial" type="text" placeholder="Serial number"/>
+                        </div>
+                    </div>
+                    <div class="control-group">
+                        <label class="control-label" for="newIPAddress">Static IP</label>
+                        <div class="controls">
+                            <input id="newIPAddress" type="text" placeholder="Static IP address"/>
+                        </div>
+                    </div>
+                    <div class="control-group">
+                        <div class="controls">
+                            <button id="new-submit" type="submit" class="btn btn-primary">Save changes</button>
+                            <button id="new-cancel" type="button" class="btn">Cancel</button>
+                        </div>
+                    </div>
+                </fieldset>
+            </form>
+        </div>
+    </div>
+</template>

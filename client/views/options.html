@@ -1,0 +1,28 @@
+<template name="options">
+	<div class="span2 well well-large">
+		<p class="lead">Options</p>
+		<p><small>
+			....
+		</small></p>
+	</div>
+	<div class="span10">
+		<div class="well">
+			{{#if companyName}}
+				{{#if editingCompanyName}}
+					<div class="edit">
+						<input id="update-company-name" type="text" value="{{companyName.value}}"/>
+					</div>
+				{{else}}
+					<div>
+						<span id="company-name"><strong>Company Name:</strong> {{companyName.value}}</span>
+					</div>
+				{{/if}}
+			{{else}}
+				<div id="set-company">
+					<input id="set-company-name" type="text" placeholder="Set company name"/>
+				</div>
+			{{/if}}
+		</div>
+		<hr/>
+	</div>
+</template>

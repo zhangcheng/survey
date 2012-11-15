@@ -1,0 +1,317 @@
+<template name="computers">
+	<div class="span2 well well-large">
+		<p class="lead">Computers are added to Stations.</p>
+	</div>
+	<div class="span10">
+		<div class="row-fluid">
+			<span class="span3 header">Serial Number</span>
+			<span class="span3 header">Manufacturer</span>
+			<span class="span2 header">Model</span>
+			<span class="span2 header">PO Number</span>
+			<span class="span1 header textRight">Cost</span>
+			<span class="span1 header"></span>
+		</div>
+		<hr class="headerRule"/>
+		{{#each computers}}
+			<div class="row-fluid">
+				{{#if editingSerialNumber}}
+					<input id="updateSerialNumber" class="edit span3" type="text" value="{{serialNumber}}"/>
+				{{else}}
+					<span class="serialNumber span3">{{serialNumber}}</span>
+				{{/if}}
+
+				{{#if editingManufacturerName}}
+					<select id="updateManufacturerId" class="edit span3">
+						{{#each manufacturers}}
+							<option value="{{_id}}">{{name}}</option>
+						{{/each}}
+					</select>
+				{{else}}
+					<span class="manufacturerName span3">{{manufacturerName}}</span>
+				{{/if}}
+
+				{{#if editingModel}}
+					<input id="updateModel" class="edit span2" type="text" value="{{model}}"/>
+				{{else}}
+					<span class="model span2">{{model}}</span>
+				{{/if}}
+
+				{{#if editingPONumber}}
+					<input id="updatePONumber" class="edit span2" type="text" value="{{poNumber}}"/>
+				{{else}}
+					<span class="poNumber span2">{{poNumber}}</span>
+				{{/if}}
+
+				{{#if editingCost}}
+					<input id="updateCost" class="edit span1" type="text" value="{{cost}}"/>
+				{{else}}
+					<span class="cost span1 textRight">{{cost}}</span>
+				{{/if}}
+
+				<span class="span1">
+					<i class="icon-plus additional-details" data-toggle="collapse" data-target="#{{_id}}_details"></i>
+					<i class="icon-edit edit-computer" data-toggle="modal" data-target="#{{_id}}_edit"></i>
+					<i class="icon-trash remove-computer"></i>
+				</span>
+			</div>
+			<div id="{{_id}}_details" class="row-fluid collapse">
+				<div class="span10 offset1 well well-small">
+					<div class="row-fluid">
+						<span class="span4 additional-info"><strong>Processor:</strong> {{processorName}} @ {{clockSpeed}}GHz</span>
+						<span class="span4 additional-info"><strong>Memory:</strong> {{memorySize}}GB</span>
+						<span class="span4 additional-info"><strong>Primary Hard Drive:</strong> {{primaryDriveSize}}GB</span>
+					</div>
+					<div class="row-fluid">
+						<span class="span4 additional-info"><strong>Wired Ethernet Speed:</strong> {{wiredEthernetSpeed}}</span>
+						<span class="span4 additional-info"><strong>WiFi Protocol:</strong> {{wirelessEthernetProtocol}}</span>
+						<span class="span4 additional-info"><strong>Static IP Address:</strong> {{ipAddress}}</span>
+					</div>
+					<div class="row-fluid">
+						<span class="span4 additional-info"><strong>Optical Drive:</strong> {{opticalDrive}}</span>
+						<span class="span8 additional-info"><strong>Other Hardware:</strong>
+							<p class="otherHardware">{{otherHardware}}</p>
+						</span>
+					</div>
+					<div class="row-fluid">
+						<p>Add, remove, view programs.</p>
+						<dl>
+							<dt>programs (Array of objects)</dt> 
+							<dd>Descriptions of the software installed on computers. (Specifically used to keep track of license keys/serial numbers).</dd>
+						</dl>
+						<dl class="dl-horizontal">
+							<dt>name:</dt> <dd>name of the software, does not need to be unique</dd>
+							<dt>manufacturerId:</dt> <dd>the id of the associated manufacturer</dd>
+							<dt>version:</dt> <dd>the version number</dd>
+							<dt>serialNumber:</dt> <dd>license key or serial number</dd>
+						</dl>
+					</div>
+				</div>
+			</div>
+			<div id="{{_id}}_edit" class="modal hide fade editModal" role="dialog" aria-hidden="true">
+				<div class="modal-header">
+					<button type="button" class="close" data-dismiss="modal" aria-hidden="true">&times;</button>
+					<h3>Edit Computer</h3>
+				</div>
+				<div class="modal-body">
+					<form class="well form-horizontal">
+						<fieldset>
+							<div class="control-group">
+								<label class="control-label" for="editSerial">Serial number</label>
+								<div class="controls">
+									<input class="editSerial" type="text" value="{{serialNumber}}"/>
+								</div>
+							</div>
+							<div class="control-group">
+								<label class="control-label" for="editManufacturerSelect">Manufacturer</label>
+								<div class="controls">
+									<select class="editManufacturerSelect">
+										{{#each manufacturers}}
+											<option value="{{_id}}">{{name}}</option>
+										{{/each}}
+									</select>
+								</div>
+							</div>
+							<div class="control-group">
+								<label class="control-label" for="editModel">Model</label>
+								<div class="controls">
+									<input class="editModel" type="text" value="{{model}}"/>
+								</div>
+							</div>
+							<div class="control-group">
+								<label class="control-label" for="editPONumber">PO#</label>
+								<div class="controls">
+									<input class="editPONumber" type="text" value="{{poNumber}}"/>
+								</div>
+							</div>
+							<div class="control-group">
+								<label class="control-label" for="editCost">Cost</label>
+								<div class="controls">
+									<input class="editCost" type="text" value="{{cost}}"/>
+								</div>
+							</div>
+							<div class="control-group">
+								<label class="control-label" for="editProcessorSelect">Processor</label>
+								<div class="controls">
+									<select class="editProcessorSelect">
+										{{#each processors}}
+											<option value="{{_id}}">{{name}}</option>
+										{{/each}}
+									</select>
+								</div>
+							</div>
+							<div class="control-group">
+								<label class="control-label" for="editClockSpeed">Clock-speed</label>
+								<div class="controls">
+									<input class="editClockSpeed" type="text" value="{{clockSpeed}}"/>
+								</div>
+							</div>
+							<div class="control-group">
+								<label class="control-label" for="editMemorySize">Memory</label>
+								<div class="controls">
+									<input class="editMemorySize" type="text" value="{{memorySize}}"/>
+								</div>
+							</div>
+							<div class="control-group">
+								<label class="control-label" for="editPrimaryDriveSize">HDD size</label>
+								<div class="controls">
+									<input class="editPrimaryDriveSize" type="text" value="{{primaryDriveSize}}"/>
+								</div>
+							</div>
+							<div class="control-group">
+								<label class="control-label" for="editWiredEthernetSelect">Wired Ethernet</label>
+								<div class="controls">
+									<select class="editWiredEthernetSelect">
+										<option value="">(None)</option>
+										{{#each wiredEthernets}}
+											<option value="{{name}}">{{name}}</option>
+										{{/each}}
+									</select>
+								</div>
+							</div>
+							<div class="control-group">
+								<label class="control-label" for="editWirelessEthernetSelect">Wireless Ethernet</label>
+								<div class="controls">
+									<select class="editWirelessEthernetSelect">
+										<option value="">(None)</option>
+										{{#each wirelessEthernets}}
+											<option value="{{name}}">{{name}}</option>
+										{{/each}}
+									</select>
+								</div>
+							</div>
+							<div class="control-group">
+								<label class="control-label" for="editIPAddress">Static IP</label>
+								<div class="controls">
+									<input class="editIPAddress" type="text" value="{{ipAddress}}"/>
+								</div>
+							</div>
+							<div class="control-group">
+								<label class="control-label" for="editOpticalSelect">Optical drive</label>
+								<div class="controls">
+									<select class="editOpticalSelect">
+										<option value="">(None)</option>
+										{{#each opticalDrives}}
+											<option value="{{name}}">{{name}}</option>
+										{{/each}}
+									</select>
+								</div>
+							</div>
+							<div class="control-group">
+								<label class="control-label" for="editOtherHardware">Other hardware</label>
+								<div class="controls">
+									<textarea class="editOtherHardware" class="span12 tall-text-area" type="text">{{otherHardware}}</textarea>
+								</div>
+							</div>
+						</fieldset>
+					</form>
+				</div>
+				<div class="modal-footer">
+					<button class="btn" data-dismiss="modal" aria-hidden="true">Close</button>
+					<button class="btn btn-primary editSave">Save changes</button>
+				</div>
+			</div>
+		{{/each}}
+		<hr/>
+		<div>
+			<form class="well form-horizontal">
+				<legend>New Computer</legend>
+				<fieldset>
+					<div class="control-group">
+						<label class="control-label" for="newSerial">Serial number</label>
+						<div class="controls">
+							<input id="newSerial" type="text" placeholder="Serial number"/>
+						</div>
+					</div>
+					<div class="control-group">
+						<label class="control-label" for="newManufacturerSelect">Manufacturer / model</label>
+						<div class="controls">
+							<select id="newManufacturerSelect">
+								{{#each manufacturers}}
+									<option value="{{_id}}">{{name}}</option>
+								{{/each}}
+							</select>
+							<input id="newModel" type="text" placeholder="Model"/>
+						</div>
+					</div>
+					<div class="control-group">
+						<label class="control-label" for="newPONumber">PO# / cost</label>
+						<div class="controls">
+							<input id="newPONumber" type="text" placeholder="Purchase Order number"/>
+							<input id="newCost" type="text" placeholder="Cost"/>
+						</div>
+					</div>
+
+					<div class="control-group">
+						<label class="control-label" for="newProcessorSelect">Processor / clock-speed</label>
+						<div class="controls">
+							<select id="newProcessorSelect">
+								{{#each processors}}
+									<option value="{{_id}}">{{name}}</option>
+								{{/each}}
+							</select>
+							<input id="newClockSpeed" type="text" placeholder="Clock-speed (GHz)"/>
+						</div>
+					</div>
+					<div class="control-group">
+						<label class="control-label" for="newMemorySize">Memory / HDD size</label>
+						<div class="controls">
+							<input id="newMemorySize" type="text" placeholder="Memory size (GB)"/>
+							<input id="newPrimaryDriveSize" type="text" placeholder="Primary drive size (GB)"/>
+						</div>
+					</div>
+					<div class="control-group">
+						<label class="control-label" for="newWiredEthernetSelect">Wired Ethernet</label>
+						<div class="controls">
+							<select id="newWiredEthernetSelect">
+								<option value="">(None)</option>
+								{{#each wiredEthernets}}
+									<option value="{{name}}">{{name}}</option>
+								{{/each}}
+							</select>
+						</div>
+					</div>
+					<div class="control-group">
+						<label class="control-label" for="newWirelessEthernetSelect">Wireless Ethernet</label>
+						<div class="controls">
+							<select id="newWirelessEthernetSelect">
+								<option value="">(None)</option>
+								{{#each wirelessEthernets}}
+									<option value="{{name}}">{{name}}</option>
+								{{/each}}
+							</select>
+						</div>
+					</div>
+					<div class="control-group">
+						<label class="control-label" for="newIPAddress">Static IP</label>
+						<div class="controls">
+							<input id="newIPAddress" type="text" placeholder="Static IP address"/>
+						</div>
+					</div>
+					<div class="control-group">
+						<label class="control-label" for="newOpticalSelect">Optical drive</label>
+						<div class="controls">
+							<select id="newOpticalSelect">
+								<option value="">(None)</option>
+								{{#each opticalDrives}}
+									<option value="{{name}}">{{name}}</option>
+								{{/each}}
+							</select>
+						</div>
+					</div>
+					<div class="control-group">
+						<label class="control-label" for="newOtherHardware">Other hardware</label>
+						<div class="controls">
+							<textarea id="newOtherHardware" class="span6 tall-text-area" type="text" placeholder="Other hardware"/>
+						</div>
+					</div>
+					<div class="control-group">
+						<div class="controls">
+							<button id="new-submit" type="submit" class="btn btn-primary">Save changes</button>
+							<button id="new-cancel" type="button" class="btn">Cancel</button>
+						</div>
+					</div>
+				</fieldset>
+			</form>
+		</div>
+	</div>
+</template>
